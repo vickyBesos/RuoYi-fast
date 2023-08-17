@@ -7,7 +7,7 @@ ruoyi:
   # 版权年份
   copyrightYear: 2023
   # 实例演示开关
-  demoEnabled: true
+  demoEnabled: false
   # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
   profile: D:/ruoyi/uploadPath
   # 获取ip地址开关
@@ -16,7 +16,7 @@ ruoyi:
 # 开发环境配置
 server:
   # 服务器的HTTP端口，默认为80
-  port: 80
+  port: 9099
   servlet:
     # 应用的访问路径
     context-path: /
@@ -144,10 +144,17 @@ swagger:
 # 代码生成
 gen: 
   # 作者
-  author: ruoyi
+  author: besos
   # 默认生成包路径 system 需改成自己的模块名称 如 system monitor tool
   packageName: com.ruoyi.project.system
   # 自动去除表前缀，默认是true
   autoRemovePre: true
   # 表前缀（生成类名不会包含表前缀，多个用逗号分隔）
   tablePrefix: sys_
+# 微信配置
+wx:
+  wxToken: 930628
+  getTokenUrl: https://api.weixin.qq.com/cgi-bin/token
+  wxAppId: wx4bb3c1171f167f11
+  wxSecret: 744bc7c43b43ed34c5f8550c74a39ad4
+  createMenuUrl: https://api.weixin.qq.com/cgi-bin/menu/create?access_token=

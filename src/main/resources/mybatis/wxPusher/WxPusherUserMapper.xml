@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.wxPusher.wxPusherUser.mapper.WxPusherUserMapper">
+    
+    <resultMap type="WxPusherUser" id="WxPusherUserResult">
+        <result property="id"    column="id"    />
+        <result property="uid"    column="uid"    />
+        <result property="appOrTopicId"    column="appOrTopicId"    />
+        <result property="reject"    column="reject"    />
+        <result property="type"    column="type"    />
+        <result property="target"    column="target"    />
+        <result property="createTime"    column="createTime"    />
+        <result property="payEndTime"    column="payEndTime"    />
+    </resultMap>
+
+    <sql id="selectWxPusherUserVo">
+        select id, uid, appOrTopicId, reject, type, target, createTime, payEndTime from wx_pusher_wx_user
+    </sql>
+
+    <select id="selectWxPusherUserList" parameterType="WxPusherUser" resultMap="WxPusherUserResult">
+        <include refid="selectWxPusherUserVo"/>
+        <where>  
+            <if test="uid != null  and uid != ''"> and uid = #{uid}</if>
+            <if test="appOrTopicId != null "> and appOrTopicId = #{appOrTopicId}</if>
+            <if test="reject != null  and reject != ''"> and reject = #{reject}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="target != null  and target != ''"> and target = #{target}</if>
+            <if test="createTime != null "> and createTime = #{createTime}</if>
+            <if test="payEndTime != null "> and payEndTime = #{payEndTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectWxPusherUserById" parameterType="Long" resultMap="WxPusherUserResult">
+        <include refid="selectWxPusherUserVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWxPusherUser" parameterType="WxPusherUser">
+        insert into wx_pusher_wx_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="uid != null">uid,</if>
+            <if test="appOrTopicId != null">appOrTopicId,</if>
+            <if test="reject != null">reject,</if>
+            <if test="type != null">type,</if>
+            <if test="target != null">target,</if>
+            <if test="createTime != null">createTime,</if>
+            <if test="payEndTime != null">payEndTime,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="uid != null">#{uid},</if>
+            <if test="appOrTopicId != null">#{appOrTopicId},</if>
+            <if test="reject != null">#{reject},</if>
+            <if test="type != null">#{type},</if>
+            <if test="target != null">#{target},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="payEndTime != null">#{payEndTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWxPusherUser" parameterType="WxPusherUser">
+        update wx_pusher_wx_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="uid != null">uid = #{uid},</if>
+            <if test="appOrTopicId != null">appOrTopicId = #{appOrTopicId},</if>
+            <if test="reject != null">reject = #{reject},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="target != null">target = #{target},</if>
+            <if test="createTime != null">createTime = #{createTime},</if>
+            <if test="payEndTime != null">payEndTime = #{payEndTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWxPusherUserById" parameterType="Long">
+        delete from wx_pusher_wx_user where id = #{id}
+    </delete>
+
+    <delete id="deleteWxPusherUserByIds" parameterType="String">
+        delete from wx_pusher_wx_user where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

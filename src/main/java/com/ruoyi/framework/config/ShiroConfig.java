@@ -294,6 +294,10 @@ public class ShiroConfig
         filterChainDefinitionMap.put("/login", "anon,captchaValidate");
         // 注册相关
         filterChainDefinitionMap.put("/register", "anon,captchaValidate");
+        //接口相关
+        filterChainDefinitionMap.put("/api/**", "anon");
+        //微信相关接口
+        filterChainDefinitionMap.put("/wechat/publicAccount/**", "anon");
         // 系统权限列表
         // filterChainDefinitionMap.putAll(SpringUtils.getBean(IMenuService.class).selectPermsAll());
 

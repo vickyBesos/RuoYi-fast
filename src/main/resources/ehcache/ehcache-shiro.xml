@@ -86,6 +86,16 @@
            timeToLiveSeconds="0"
            timeToIdleSeconds="0"
            statistics="false"/>
+
+    <!-- 微信token缓存 锁定100分钟 -->
+    <cache name="token-RecordCache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="6000"
+           timeToLiveSeconds="6000"
+           overflowToDisk="true"
+           statistics="true">
+    </cache>
     
 </ehcache>
 	
